@@ -1,0 +1,131 @@
+// Modal demonstrating React Portal and z-index layering
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex; // Flexbox for centering
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 9999; // Very high z-index to overlay everything
+  animation: fadeIn 0.2s ease-out;
+  backdrop-filter: blur(4px); // Modern blur effect
+
+  // The overlay has the highest z-index in the application
+  // This ensures the modal appears above all other content
+  // including the navbar (z-index: 1000)
+}
+
+.modalContent {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 10000; // Higher than overlay for proper stacking
+  animation: slideIn 0.3s ease-out;
+
+  // Custom scrollbar
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #16a085;
+    border-radius: 10px;
+
+    &:hover {
+      background: #138d75;
+    }
+  }
+}
+
+.closeIcon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #7f8c8d;
+  cursor: pointer;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex; // Flexbox for centering
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10001; // Above modal content
+
+  &:hover {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    transform: rotate(90deg);
+  }
+
+  &:active {
+    transform: rotate(90deg) scale(0.95);
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .modalOverlay {
+    padding: 0.5rem;
+  }
+
+  .modalContent {
+    padding: 1.5rem;
+    max-height: 95vh;
+    border-radius: 12px;
+  }
+
+  .closeIcon {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.25rem;
+  }
+}
+
+// Demonstration of z-index stacking context:
+// 1. Navbar: z-index 1000
+// 2. Modal overlay: z-index 9999
+// 3. Modal content: z-index 10000
+// 4. Close button: z-index 10001
+// This creates a proper stacking hierarchy

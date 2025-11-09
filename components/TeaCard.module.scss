@@ -1,0 +1,125 @@
+// TeaCard component demonstrating Flexbox
+.card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex; // Flexbox for vertical layout
+  flex-direction: column;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .imageWrapper {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background-color: #f0f0f0;
+
+    .image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover .image {
+      transform: scale(1.1);
+    }
+  }
+
+  .content {
+    padding: 1.5rem;
+    display: flex; // Flexbox for content layout
+    flex-direction: column;
+    gap: 0.75rem;
+    flex-grow: 1; // Take remaining space
+
+    .header {
+      display: flex; // Flexbox for title and like button
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+
+      .title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin: 0;
+        flex-grow: 1;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: #16a085;
+        }
+      }
+    }
+
+    .region {
+      color: #7f8c8d;
+      font-size: 0.9rem;
+      margin: 0;
+      display: flex; // Flexbox for icon alignment
+      align-items: center;
+      gap: 0.5rem;
+
+      &::before {
+        content: "📍";
+      }
+    }
+
+    .description {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    .footer {
+      display: flex; // Flexbox for price and likes
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid #ecf0f1;
+      margin-top: auto; // Push to bottom
+
+      .price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #16a085;
+      }
+
+      .likes {
+        color: #95a5a6;
+        font-size: 0.9rem;
+        display: flex; // Flexbox for alignment
+        align-items: center;
+        gap: 0.25rem;
+      }
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .card {
+    .imageWrapper {
+      height: 200px;
+    }
+
+    .content {
+      padding: 1rem;
+
+      .header {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  }
+}

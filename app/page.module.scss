@@ -1,0 +1,87 @@
+// Main page demonstrating CSS Grid
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: calc(100vh - 80px);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+
+  .title {
+    font-size: 3rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #1e3c72 0%, #16a085 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    color: #7f8c8d;
+    font-weight: 300;
+  }
+}
+
+// CSS Grid layout for tea cards
+.teaGrid {
+  display: grid; // CSS Grid
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); // Responsive columns
+  gap: 2rem; // Space between grid items
+  margin-bottom: 3rem;
+
+  // Grid items will automatically flow and wrap
+  > * {
+    // Each card will take full grid cell
+    width: 100%;
+  }
+}
+
+.emptyState {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #95a5a6;
+  font-size: 1.1rem;
+}
+
+// Responsive grid adjustments
+@media (max-width: 1200px) {
+  .teaGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .header {
+    .title {
+      font-size: 2rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+    }
+  }
+
+  .teaGrid {
+    grid-template-columns: 1fr; // Single column on mobile
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    .title {
+      font-size: 1.75rem;
+    }
+  }
+}

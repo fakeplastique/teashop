@@ -1,0 +1,139 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  min-height: calc(100vh - 80px);
+}
+
+.article {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.content {
+  padding: 3rem;
+}
+
+// Style the HTML content from the database using global selectors
+.content :global(h1) {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #16a085;
+}
+
+.content :global(h2) {
+  font-size: 1.75rem;
+  color: #1e3c72;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.content :global(h2)::before {
+  content: "🍵";
+  font-size: 1.5rem;
+}
+
+.content :global(p) {
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.content :global(ul) {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.content :global(ul li) {
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+  font-size: 1.05rem;
+}
+
+.content :global(ul li strong) {
+  color: #16a085;
+  font-weight: 600;
+}
+
+.content :global(h2 + p) {
+  margin-top: 1rem;
+}
+
+.footer {
+  background: linear-gradient(135deg, #f8f9fa 0%, #ecf0f1 100%);
+  padding: 2rem 3rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.note {
+  color: #7f8c8d;
+  font-style: italic;
+  margin: 0;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.note::before {
+  content: "💡 ";
+}
+
+.error {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.error h1 {
+  color: #e74c3c;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.error p {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 1rem;
+  }
+
+  .content {
+    padding: 2rem 1.5rem;
+  }
+
+  .content :global(h1) {
+    font-size: 2rem;
+  }
+
+  .content :global(h2) {
+    font-size: 1.5rem;
+  }
+
+  .content :global(p),
+  .content :global(ul li) {
+    font-size: 1rem;
+  }
+
+  .footer {
+    padding: 1.5rem;
+  }
+
+  .note {
+    font-size: 0.95rem;
+  }
+}

@@ -1,0 +1,212 @@
+// Tea detail page demonstrating Grid and Flexbox
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: calc(100vh - 80px);
+}
+
+.backButton {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  transition: all 0.2s ease;
+  font-weight: 500;
+
+  &:hover {
+    background-color: #16a085;
+    color: white;
+    transform: translateX(-5px);
+  }
+}
+
+// Grid layout for image and info sections
+.teaDetail {
+  display: grid; // CSS Grid for layout
+  grid-template-columns: 1fr 1fr; // Two equal columns
+  gap: 3rem;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+  .imageSection {
+    position: relative;
+    background-color: #f8f9fa;
+    display: flex; // Flexbox for centering
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+
+    .image {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .infoSection {
+    padding: 3rem;
+    display: flex; // Flexbox for vertical layout
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .header {
+      display: flex; // Flexbox for title and like button
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+
+      .title {
+        font-size: 2.5rem;
+        color: #2c3e50;
+        margin: 0;
+        flex-grow: 1;
+      }
+    }
+
+    .meta {
+      display: flex; // Flexbox for metadata
+      gap: 2rem;
+      flex-wrap: wrap;
+
+      .region,
+      .likes {
+        display: flex; // Flexbox for icon and text
+        align-items: center;
+        gap: 0.5rem;
+        color: #7f8c8d;
+        font-size: 1.1rem;
+
+        .icon {
+          font-size: 1.3rem;
+        }
+      }
+    }
+
+    .price {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #16a085;
+    }
+
+    .description {
+      h2 {
+        font-size: 1.5rem;
+        color: #2c3e50;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        color: #555;
+        line-height: 1.8;
+        font-size: 1.1rem;
+      }
+    }
+
+    .actions {
+      display: flex; // Flexbox for buttons
+      gap: 1rem;
+      margin-top: auto; // Push to bottom
+      padding-top: 1rem;
+
+      button {
+        flex: 1; // Equal width buttons
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        cursor: pointer;
+
+        &.addToCart {
+          background-color: #16a085;
+          color: white;
+          border: 2px solid #16a085;
+
+          &:hover {
+            background-color: #138d75;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(22, 160, 133, 0.3);
+          }
+        }
+
+        &.learnMore {
+          background-color: white;
+          color: #16a085;
+          border: 2px solid #16a085;
+
+          &:hover {
+            background-color: #16a085;
+            color: white;
+            transform: translateY(-2px);
+          }
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+}
+
+// Responsive design - convert grid to single column
+@media (max-width: 968px) {
+  .teaDetail {
+    grid-template-columns: 1fr; // Single column on tablet/mobile
+
+    .imageSection {
+      padding: 1.5rem;
+    }
+
+    .infoSection {
+      padding: 2rem;
+
+      .header {
+        .title {
+          font-size: 2rem;
+        }
+      }
+
+      .price {
+        font-size: 2.5rem;
+      }
+
+      .actions {
+        flex-direction: column; // Stack buttons vertically
+
+        button {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .teaDetail {
+    .infoSection {
+      padding: 1.5rem;
+
+      .header {
+        .title {
+          font-size: 1.75rem;
+        }
+      }
+
+      .price {
+        font-size: 2rem;
+      }
+    }
+  }
+}
