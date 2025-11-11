@@ -43,7 +43,6 @@ export async function toggleLike(teaId: number) {
 
   cookieStore.set(LIKED_TEAS_COOKIE, JSON.stringify(likedTeaIds), cookieOptions);
 
-  revalidatePath("/");
   revalidatePath(`/tea/${teaId}`);
   revalidatePath("/favorites");
 
