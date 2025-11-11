@@ -16,7 +16,9 @@ export default function LikeButton({ teaId, initialIsLiked }: LikeButtonProps) {
     (state, _newState: boolean) => !state
   );
 
-  const handleLike = () => {
+  const handleLike = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
     startTransition(async () => {
       setOptimisticLiked(!optimisticLiked);
       await toggleLike(teaId);
