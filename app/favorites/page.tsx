@@ -1,8 +1,8 @@
 import { getDataSource } from "@/lib/db";
 import { Tea } from "@/entities/Tea";
 import { getLikedTeaIds } from "@/app/actions/likeActions";
-import TeaCard from "@/components/TeaCard";
-import FavoritesInfo from "@/components/FavoritesInfo";
+import TeaCard from "@/components/tea/TeaCard";
+import FavoritesInfo from "./_components/FavoritesInfo";
 import styles from "./page.module.scss";
 
 export const dynamic = "force-dynamic";

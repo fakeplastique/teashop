@@ -4,7 +4,7 @@ import Link from "next/link";
 import { getDataSource } from "@/lib/db";
 import { Tea } from "@/entities/Tea";
 import { getLikedTeaIds } from "@/app/actions/likeActions";
-import LikeButton from "@/components/LikeButton";
+import LikeButton from "@/components/ui/LikeButton";
 import styles from "./page.module.scss";
 
 interface TeaPageProps {

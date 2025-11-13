@@ -1,4 +1,3 @@
-// Modal demonstrating React Portal and z-index layering
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -10,13 +9,10 @@
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  z-index: 9999; // Very high z-index to overlay everything
+  z-index: 9999; 
   animation: fadeIn 0.2s ease-out;
-  backdrop-filter: blur(4px); // Modern blur effect
+  backdrop-filter: blur(4px); 
 
-  // The overlay has the highest z-index in the application
-  // This ensures the modal appears above all other content
-  // including the navbar (z-index: 1000)
 }
 
 .modalContent {
@@ -29,10 +25,9 @@
   overflow-y: auto;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   position: relative;
-  z-index: 10000; // Higher than overlay for proper stacking
+  z-index: 10000; 
   animation: slideIn 0.3s ease-out;
 
-  // Custom scrollbar
   &::-webkit-scrollbar {
     width: 8px;
   }
