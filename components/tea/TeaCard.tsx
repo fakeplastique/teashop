@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Tea } from "@/entities/Tea";
-import LikeButton from "./LikeButton";
+import LikeButton from "../ui/LikeButton";
 import styles from "./TeaCard.module.scss";
 
 interface TeaCardProps {

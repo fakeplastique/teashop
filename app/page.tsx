@@ -2,7 +2,7 @@ import { getDataSource } from "@/lib/db";
 import { seedDatabase } from "@/lib/seed";
 import { Tea } from "@/entities/Tea";
 import { getLikedTeaIds } from "./actions/likeActions";
-import TeaCard from "@/components/TeaCard";
+import TeaCard from "@/components/tea/TeaCard";
 import styles from "./page.module.scss";
 
 export const dynamic = "force-dynamic";
