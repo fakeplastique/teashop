@@ -1,7 +1,6 @@
 "use client";
 
-import { useOptimistic, useTransition } from "react";
-import { toggleLike } from "@/app/actions/likeActions";
+import { useState, useOptimistic, useTransition } from "react";
 import styles from "./LikeButton.module.scss";
 
 interface LikeButtonProps {
@@ -11,17 +10,36 @@ interface LikeButtonProps {
 
 export default function LikeButton({ teaId, initialIsLiked }: LikeButtonProps) {
   const [isPending, startTransition] = useTransition();
+  const [liked, setLiked] = useState(initialIsLiked);
   const [optimisticLiked, setOptimisticLiked] = useOptimistic(
-    initialIsLiked,
-    (state, _newState: boolean) => !state
+    liked,
+    (state) => !state
   );
 
   const handleLike = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
     startTransition(async () => {
-      setOptimisticLiked(!optimisticLiked);
-      await toggleLike(teaId);
+      setOptimisticLiked(!liked);
+      try {
+        const response = await fetch(`/api/like`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ teaId: teaId }),
+            credentials: 'include'
+        });
+        
+
+        if (response.ok) {
+          setLiked(!liked);
+        } else {
+          console.error('Failed to toggle like. Status:', response.status);
+        }
+      } catch (error) {
+        console.error('Failed to toggle like.', error);
+      }
     });
   };
 
