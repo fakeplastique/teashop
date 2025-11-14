@@ -4,17 +4,17 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 @Entity()
 export class StaticPage {
   @PrimaryGeneratedColumn()
-  id!: number;
+  id: number;
 
   @Column("text")
-  content!: string;
+  content: string;
 
   @Column()
-  type!: string;
+  type: string;
 
   @Column({ unique: true })
-  slug!: string;
+  slug: string;
 
   @Column()
-  title!: string;
+  title: string;
 }
