@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
+import { SafeImage } from "@/components/ui/SafeImage";
 import Link from "next/link";
 import { getDataSource } from "@/lib/db";
 import { Tea } from "@/entities/Tea";
@@ -48,13 +48,14 @@ export default async function TeaPage({ params }: TeaPageProps) {
 
       <div className={styles.teaDetail}>
         <div className={styles.imageSection}>
-          <Image
-            src={tea.photoUrl}
+          <SafeImage
+            primarySrc={tea.photoUrl}
+            fallbackSrc="/brokenTeaImage.png"
             alt={tea.name}
             width={600}
             height={600}
             className={styles.image}
-            priority
+            loading="lazy"
           />
         </div>
 
