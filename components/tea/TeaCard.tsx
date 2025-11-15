@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import { SafeImage } from "@/components/ui/SafeImage";
 import { Tea } from "@/entities/Tea";
 import LikeButton from "../ui/LikeButton";
 import styles from "./TeaCard.module.scss";
@@ -13,11 +13,14 @@ export default function TeaCard({ tea, isLiked }: TeaCardProps) {
   return (
     <div className={styles.card}>
       <Link href={`/tea/${tea.id}`} className={styles.imageWrapper}>
-        <Image
-          src={tea.photoUrl}
+        <SafeImage
+          primarySrc={tea.photoUrl}
+          fallbackSrc={'/brokenTeaImage.png'}
           alt={tea.name}
           width={400}
           height={300}
+          loading="lazy"
+
           className={styles.image}
         />
       </Link>

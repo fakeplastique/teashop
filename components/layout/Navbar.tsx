@@ -18,6 +18,9 @@ export default function Navbar() {
             <Link href="/tea-rules">Tea Rules</Link>
           </li>
           <li>
+            <Link href="/quiz">Quiz</Link>
+          </li>
+          <li>
             <Link href="/favorites">Favorites</Link>
           </li>
         </ul>

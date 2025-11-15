@@ -4,23 +4,23 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 @Entity()
 export class Tea {
   @PrimaryGeneratedColumn()
-  id!: number;
+  id: number;
 
   @Column()
-  name!: string;
+  name: string;
 
   @Column("decimal", { precision: 10, scale: 2 })
-  price!: number;
+  price: number;
 
   @Column()
-  photoUrl!: string;
+  photoUrl: string;
 
   @Column()
-  region!: string;
+  region: string;
 
   @Column({ default: 0 })
-  numberOfLikes!: number;
+  numberOfLikes: number;
 
   @Column("text", { nullable: true })
-  description?: string;
+  description: string;
 }
