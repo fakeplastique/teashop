@@ -1,14 +1,14 @@
 import { SessionOptions } from "iron-session";
 
 export const JWT_CONFIG = {
-  secret: process.env.JWT_SECRET || "your-secret-key-min-32-characters-long",
+  secret: process.env.JWT_SECRET || "QWERTYUIOPASDFGHJKLZXCVBNMQWERTY",
   accessTokenExpiry: "15m", 
   refreshTokenExpiry: "7d", 
   algorithm: "HS256" as const,
 };
 
 export const sessionOptions: SessionOptions = {
-  password: process.env.SESSION_SECRET || "complex_password_at_least_32_characters_long",
+  password: process.env.SESSION_SECRET || "QWERTYUIOPASDFGHJKLZXCVBNMQWERTY",
   cookieName: "teashop_session",
   cookieOptions: {
     secure: process.env.NODE_ENV === "production",
