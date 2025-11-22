@@ -1,22 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getCurrentUser, isAuthenticated } from "@/lib/auth/session";
+import { requireAuth } from "@/lib/auth/helpers";
 
 export async function GET(request: NextRequest) {
   try {
-    const authenticated = await isAuthenticated();
+    const auth = await requireAuth(request);
 
-    if (!authenticated) {
-      return NextResponse.json(
-        { error: "Not authenticated" },
-        { status: 401 }
-      );
+    if (!auth.authenticated) {
+      return auth.error;
     }
-
-    const user = await getCurrentUser();
 
     return NextResponse.json(
       {
-        user,
+        user: auth.user,
       },
       { status: 200 }
     );

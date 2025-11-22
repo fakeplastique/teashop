@@ -35,7 +35,7 @@ export default function SignupPage() {
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.field}>
-            <label htmlFor="name">Name (optional)</label>
+            <label htmlFor="name">Name</label>
             <input
               type="text"
               id="name"
