@@ -1,6 +1,7 @@
 import { DataSource } from "typeorm";
 import { Tea } from "@/entities/Tea";
 import { StaticPage } from "@/entities/StaticPage";
+import { User } from "@/entities/User";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -9,9 +10,9 @@ export const AppDataSource = new DataSource({
   username: process.env.DATABASE_USER || "postgres",
   password: process.env.DATABASE_PASSWORD || "postgres",
   database: process.env.DATABASE_NAME || "teashop",
-  synchronize: true, // Auto-sync schema in development
+  synchronize: true,
   logging: false,
-  entities: [Tea, StaticPage],
+  entities: [Tea, StaticPage, User],
   migrations: [],
   subscribers: [],
 });
