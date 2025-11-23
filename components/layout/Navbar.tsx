@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./Navbar.module.scss";
+import AuthNav from "./AuthNav";
 
 export default function Navbar() {
   return (
@@ -24,6 +25,8 @@ export default function Navbar() {
             <Link href="/favorites">Favorites</Link>
           </li>
         </ul>
+
+        <AuthNav />
       </div>
     </nav>
   );
