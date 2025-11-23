@@ -2,7 +2,6 @@ import { getDataSource } from "@/lib/db";
 import { Tea } from "@/entities/Tea";
 import { getLikedTeaIds } from "@/app/actions/likeActions";
 import TeaCard from "@/components/tea/TeaCard";
-import FavoritesInfo from "./_components/FavoritesInfo";
 import styles from "./page.module.scss";
 
 export const dynamic = "force-dynamic";
@@ -44,11 +43,6 @@ export default async function FavoritesPage() {
     <div className={styles.container}>
       <header className={styles.header}>
         <h1 className={styles.title}>Your Favorites</h1>
-        <p className={styles.subtitle}>
-          You have {favoriteTeas.length} favorite{" "}
-          {favoriteTeas.length === 1 ? "tea" : "teas"}
-        </p>
-        <FavoritesInfo />
       </header>
 
       <div className={styles.teaGrid}>

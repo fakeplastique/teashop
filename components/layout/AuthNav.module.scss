@@ -1,0 +1,48 @@
+.authNav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.username {
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.logoutBtn {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffd700;
+  }
+}
+
+.link {
+  padding: 0.5rem 1rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffd700;
+  }
+}
+
+.loading {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
