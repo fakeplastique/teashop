@@ -20,7 +20,8 @@
     "react-dom": "^19.0.0",
     "reflect-metadata": "^0.2.1",
     "sass": "^1.69.5",
-    "typeorm": "^0.3.20"
+    "typeorm": "^0.3.20",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@types/bcryptjs": "^3.0.0",

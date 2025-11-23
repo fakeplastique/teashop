@@ -4,33 +4,22 @@ import { User } from "@/entities/User";
 import { hashPassword } from "@/lib/auth/password";
 import { generateTokenPair } from "@/lib/auth/jwt";
 import { createSession } from "@/lib/auth/session";
+import { SignupSchema } from "@/lib/schemas";
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { email, password, name } = body;
 
-    if (!email || !password) {
+    const result = SignupSchema.safeParse(body);
+
+    if (!result.success) {
       return NextResponse.json(
-        { error: "Email and password are required" },
-        { status: 400 }
-      );
+        {error: result.error.issues[0].message},
+        {status: 400}
+      )
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: "Invalid email format" },
-        { status: 400 }
-      );
-    }
-
-    if (password.length < 8) {
-      return NextResponse.json(
-        { error: "Password must be at least 8 characters long" },
-        { status: 400 }
-      );
-    }
+    const { email, password, name } = result.data;
 
     if (!AppDataSource.isInitialized) {
       await AppDataSource.initialize();
@@ -51,7 +40,7 @@ export async function POST(request: NextRequest) {
     const user = userRepository.create({
       email,
       password: hashedPassword,
-      name: name || null,
+      name: name,
     });
 
     await userRepository.save(user);
