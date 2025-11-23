@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getIronSession } from "iron-session";
-import { sessionOptions, SessionData } from "@/lib/auth/config";
+import { requireAuth } from "./lib/auth/helpers";
 
 const protectedRoutes = [
   "/quiz"
@@ -12,9 +11,7 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const response = NextResponse.next();
-  const session = await getIronSession<SessionData>(request, response, sessionOptions);
-
-  const isAuthenticated = session.isLoggedIn === true && !!session.user;
+  const { authenticated: isAuthenticated } = await requireAuth(request);
 
   const isProtectedRoute = protectedRoutes.some((route) => pathname.startsWith(route));
 
