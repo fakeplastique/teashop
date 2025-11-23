@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { requireAuth } from "./lib/auth/helpers";
+import { requireAuth } from "./lib/auth/utils";
 
 const protectedRoutes = [
-  "/quiz"
+  "/quiz",
+  "/api/quiz"
 ];
 
 const authRoutes = ["/login", "/signup"];
