@@ -1,3 +1,4 @@
+import { UserRole } from "@/entities/User";
 import { SessionOptions } from "iron-session";
 
 export const JWT_CONFIG = {
@@ -23,6 +24,8 @@ export interface SessionData {
   user?: {
     id: number;
     email: string;
+    name: string;
+    role: UserRole;
   };
   isLoggedIn: boolean;
 }

@@ -15,7 +15,7 @@ export default function AuthNav() {
     return (
       <div className={styles.authNav}>
         <span className={styles.username}>
-          {user.name || user.email}
+          {user.name}
         </span>
         <button onClick={logout} className={styles.logoutBtn}>
           Logout

@@ -1,17 +1,35 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode, ReactElement } from "react";
+import { useRouter } from "next/navigation";
 import axios, { AxiosError } from "axios";
+import { UserRole } from "@/entities/User";
 
 export interface User {
   id: number;
   email: string;
+  name: string
+  role: UserRole;
 }
 
-export function useAuth() {
+interface AuthContextType {
+  user: User | null;
+  loading: boolean;
+  error: string | null;
+  isAuthenticated: boolean;
+  login: (email: string, password: string) => Promise<{ success: boolean; data?: any; error?: string }>;
+  signup: (email: string, password: string, name?: string) => Promise<{ success: boolean; data?: any; error?: string }>;
+  logout: () => Promise<{ success: boolean; error?: string }>;
+  checkAuth: () => Promise<void>;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export function AuthProvider({ children }: { children: ReactNode }): ReactElement {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     checkAuth();
@@ -71,6 +89,8 @@ export function useAuth() {
       await axios.post("/api/auth/logout");
 
       setUser(null);
+      router.push("/");
+      router.refresh();
       return { success: true };
     } catch (err) {
       const errorMessage =
@@ -80,7 +100,7 @@ export function useAuth() {
     }
   };
 
-  return {
+  const contextValue = {
     user,
     loading,
     error,
@@ -90,4 +110,18 @@ export function useAuth() {
     logout,
     checkAuth,
   };
+
+  return (
+    <AuthContext.Provider value={contextValue}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+export function useAuth() {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
 }
