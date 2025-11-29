@@ -1,6 +1,7 @@
 import { getIronSession, IronSession } from "iron-session";
 import { cookies } from "next/headers";
 import { sessionOptions, SessionData, defaultSession } from "./config";
+import { UserRole } from "@/entities/User";
 
 
 
@@ -15,12 +16,13 @@ export async function getSession(): Promise<IronSession<SessionData>> {
   return session;
 }
 
-export async function createSession(userId: number, email: string) {
+export async function createSession(userId: number, email: string, role: UserRole = UserRole.USER) {
   const session = await getSession();
 
   session.user = {
     id: userId,
-    email
+    email: email,
+    role: role
   };
   session.isLoggedIn = true;
 
