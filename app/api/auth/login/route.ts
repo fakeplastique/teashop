@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
 
     const { accessToken, refreshToken } = await generateTokenPair(user.id, user.email);
 
-    await createSession(user.id, user.email, user.role);
+    await createSession(user.id, user.email, user.name, user.role);
 
     return NextResponse.json(
       {

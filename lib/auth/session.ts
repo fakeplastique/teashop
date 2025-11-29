@@ -16,11 +16,12 @@ export async function getSession(): Promise<IronSession<SessionData>> {
   return session;
 }
 
-export async function createSession(userId: number, email: string, role: UserRole = UserRole.USER) {
+export async function createSession(userId: number, email: string, name: string, role: UserRole = UserRole.USER) {
   const session = await getSession();
 
   session.user = {
     id: userId,
+    name: name,
     email: email,
     role: role
   };

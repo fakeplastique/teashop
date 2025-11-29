@@ -24,6 +24,7 @@ export interface SessionData {
   user?: {
     id: number;
     email: string;
+    name: string;
     role: UserRole;
   };
   isLoggedIn: boolean;
