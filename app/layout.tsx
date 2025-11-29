@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.scss";
 import Navbar from "@/components/layout/Navbar";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: "Tea Shop - Premium Teas from Around the World",
@@ -15,8 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        <main>{children}</main>
+        <Providers>
+          <Navbar />
+          <main>{children}</main>
+        </Providers>
       </body>
     </html>
   );
